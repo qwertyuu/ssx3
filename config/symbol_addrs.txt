@@ -7,6 +7,7 @@ BXsrand__FUi = 0x003177C8; //type:func
 BXrand = 0x003177F0; //type:func
 AIrand = 0x00317810; //type:func
 AIrandf = 0x00317830; //type:func
+func_00317890__Fff = 0x00317890; //type:func
 cBxPseudoRng_Seed = 0x00317958; //type:func
 cBxPseudoRng_NextInt = 0x00317a08; //type:func
 
