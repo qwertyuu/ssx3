@@ -18,12 +18,20 @@ INCLUDE_ASM("bxrandom", BXrand);
 
 INCLUDE_ASM("bxrandom", AIrand);
 
-INCLUDE_ASM("bxrandom", AIrandf);
+INCLUDE_ASM("bxrandom", AIrandf__Fff);
+#ifdef SKIP_ASM
+unsigned int AIrand();
+
+float AIrandf(float a, float b)
+{
+	unsigned int r = (AIrand() & 0x7FFFFFFF) | 0x3F800000;
+	float f = *((float*)&r) - 1.0f; // random 0.0 ? f < 1.0
+	return a + (b - a) * f;
+}
+#endif
 
 INCLUDE_ASM("bxrandom", func_00317890__Fff);
 #ifdef SKIP_ASM
-float AIrandf(float arg0, float arg1);
-
 float func_00317890(float param_1, float param_2)
 {
 	float fVar1;
