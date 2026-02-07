@@ -14,13 +14,13 @@ void BXsrand(uint seed)
 }
 #endif
 
-INCLUDE_ASM("bxrandom", BXrand);
+INCLUDE_ASM("bxrandom", BXrand__Fv);
 #ifdef SKIP_ASM
-cBxPseudoRng_NextInt(unsigned int[]);                         /* extern */
-unsigned int D_004FF018[6];
+void cBxPseudoRng_NextInt(const uint[]);                         /* extern */
 
-void BXrand() {
-    cBxPseudoRng_NextInt(&D_004FF018);
+void BXrand() 
+{
+    cBxPseudoRng_NextInt(D_004FF018);
 }
 #endif
 

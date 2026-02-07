@@ -4,7 +4,7 @@ GetHashValue64__FPc = 0x003176F0; //type:func
 tHashName64_getHashValue__FPUlPc = 0x00317690; //type:func
 
 BXsrand__FUi = 0x003177C8; //type:func
-BXrand = 0x003177F0; //type:func
+BXrand__Fv = 0x003177F0; //type:func
 AIrand = 0x00317810; //type:func
 AIrandf__Fff = 0x00317830; //type:func
 func_00317890__Fff = 0x00317890; //type:func
