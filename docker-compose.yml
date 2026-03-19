@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  ssx3-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILDKIT_INLINE_CACHE: 1
+    container_name: ssx3-builder
+    image: ssx3:latest
+    volumes:
+      # Mount the project directory for live development
+      - .:/workspace
+      # Mount disc directory (critical - the game executable)
+      - ./disc:/workspace/disc
+      # Preserve build artifacts
+      - ssx3-build-cache:/workspace/out
+      # Preserve Wine environment
+      - ssx3-wine:/home/builder/.wine
+    environment:
+      # Set timezone
+      TZ: UTC
+      # Wine configuration
+      WINEARCH: win32
+      WINEPREFIX: /home/builder/.wine
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    command: /bin/bash
+
+volumes:
+  ssx3-build-cache:
+    driver: local
+  ssx3-wine:
+    driver: local

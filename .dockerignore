@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Build artifacts
+out/
+build/
+dist/
+*.o
+*.so
+*.a
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+.tox/
+
+# Node (if any)
+node_modules/
+npm-debug.log
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Documentation
+*.md
+LICENSE
+
+# Game disc (if present - large files)
+disc/
+
+# Temporary files
+*.tmp
+.env.local
