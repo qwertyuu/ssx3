@@ -28,3 +28,6 @@ venv/
 
 temp_sheet.xlsx
 objdiff.json
+
+# ghidra
+ghidra_out/
