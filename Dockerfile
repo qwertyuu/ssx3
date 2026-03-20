@@ -41,6 +41,12 @@ COPY --chown=builder:builder . .
 # Ensure workspace is writable by builder
 RUN chown -R builder:builder /workspace
 
+# Download and install the EE GCC compiler
+RUN mkdir -p /opt/eegcc && \
+    wget -qP /tmp "https://github.com/AngheloAlf/SN-Systems-ProDG_for_PS2_3.01/releases/latest/download/eegcc_2.95.3_sn_v1.36.tar.gz" && \
+    tar -xzf /tmp/eegcc_2.95.3_sn_v1.36.tar.gz -C /opt/eegcc && \
+    rm /tmp/eegcc_2.95.3_sn_v1.36.tar.gz
+
 # Set up Python virtual environment in /root (won't be shadowed by volume mount)
 RUN python3 -m venv /root/venv && \
     /root/venv/bin/pip install --upgrade pip setuptools wheel && \
@@ -68,6 +74,13 @@ cd /workspace
 if [ ! -f "disc/SLUS_207.72" ]; then
     echo "ERROR: disc/SLUS_207.72 not found!"
     exit 1
+fi
+
+# Ensure compiler is available (volume mount may overwrite tools/)
+if [ ! -d "tools/cc/eegcc-2.95.3-V1.36" ]; then
+    echo "=== Setting up compiler ==="
+    mkdir -p tools/cc/eegcc-2.95.3-V1.36
+    cp -r /opt/eegcc/* tools/cc/eegcc-2.95.3-V1.36/
 fi
 
 # Configure if needed
